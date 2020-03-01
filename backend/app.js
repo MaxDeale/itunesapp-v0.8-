@@ -3,6 +3,7 @@ const app = express();
 const fileSystem = require("fs");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
+const path = require("path");
 
 app.use(
   bodyParser.urlencoded({
@@ -69,6 +70,16 @@ app.delete("/favourites/:id", function (req, res) {
     }
   });
 });
+
+
+
+if(process.env.NODE.ENV === "production"){
+  //set static folder 
+  app.use(express.static("client/build"));
+
+  app.get("*", (req,res)=> res.sendFile(path.resolve(__dirname,"client", "build", "index.html") ));
+}
+
 
 // making the server listen in port 8080 using a variable
 const PORT = process.env.PORT || 8080;

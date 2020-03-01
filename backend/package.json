@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix client",
     "clientinstall": "npm install --prefix client",
-    "dev": "concurrently \"nodemon app.js\" \"npm run client\""
+    "dev": "concurrently \"nodemon app.js\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install  --prefix client &&   npm run build --prefix client"
   },
   "author": "max",
   "license": "ISC",
